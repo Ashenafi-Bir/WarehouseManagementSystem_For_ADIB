@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.ComponentModel;
+
+namespace WMS_FOR_ADIB.Models
+{
+    internal class AssetDisposal
+    {
+        [Key]
+        public int DisposalID { get; set; }
+
+        [Required]
+        public int ItemID { get; set; }
+
+        [ForeignKey("ItemID")]
+        public Item? Item { get; set; }
+
+        [Required]
+        public int Quantity { get; set; }
+
+        [Required]
+        [DisplayName("Disposed Date")]
+        public DateTime DateDisposed { get; set; }
+
+        [Required]
+        [StringLength(500)]
+        public string? Reason { get; set; }
+
+        [Required]
+        [DisplayName(" Disposed BY")]
+        public string? DisposedBy { get; set; }
+
+        [Required]
+        [DisplayName("Approved By")]
+        public string? ApprovedBy { get; set; }
+
+       }
+}
