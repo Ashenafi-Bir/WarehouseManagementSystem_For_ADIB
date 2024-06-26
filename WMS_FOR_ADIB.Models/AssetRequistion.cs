@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace WMS_FOR_ADIB.Models
 {
-    internal class AssetRequistion
+    public class AssetRequistion
     {
         [Key]
         public int RequisitionID { get; set; }
@@ -17,12 +17,8 @@ namespace WMS_FOR_ADIB.Models
         [Required]
         [DisplayName("Branch Code")]
         public int BranchCode { get; set; }
-        
-        [Required]
-        public int ItemID { get; set; }
-        
-        [ForeignKey("ItemID")]
-        public Item? Item { get; set; }
+
+        public ICollection<Item>? Items { get; set; }
 
         [Required]
         

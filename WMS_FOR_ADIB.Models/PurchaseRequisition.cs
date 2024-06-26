@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace WMS_FOR_ADIB.Models
 {
-    internal class PurchaseRequisition
+    public class PurchaseRequisition
     {
         [Key]
         public int PRId { get; set; }

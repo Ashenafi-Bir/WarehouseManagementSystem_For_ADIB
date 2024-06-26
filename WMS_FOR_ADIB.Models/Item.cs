@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace WMS_FOR_ADIB.Models
 {
-    internal class Item
+    public class Item
     {
 
         [Key]
@@ -31,8 +31,8 @@ namespace WMS_FOR_ADIB.Models
         [DisplayName("unit Price")]
         public decimal UnitPrice { get; set; }
 
-        [Required]
-        public decimal TotalPrice { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public decimal TotalPrice { get; private set; }
 
         [Required]
         [DisplayName("Purchase Order Number")]

@@ -9,16 +9,12 @@ using System.ComponentModel;
 
 namespace WMS_FOR_ADIB.Models
 {
-    internal class AssetDisposal
+    public class AssetDisposal
     {
         [Key]
         public int DisposalID { get; set; }
 
-        [Required]
-        public int ItemID { get; set; }
-
-        [ForeignKey("ItemID")]
-        public Item? Item { get; set; }
+        public ICollection<Item>? Items { get; set; }
 
         [Required]
         public int Quantity { get; set; }

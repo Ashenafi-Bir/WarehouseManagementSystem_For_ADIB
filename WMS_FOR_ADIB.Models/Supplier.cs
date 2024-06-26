@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WMS_FOR_ADIB.Models
 {
-    internal class Supplier
+    public class Supplier
     {
         [Key]
         public int SupplierID { get; set; }

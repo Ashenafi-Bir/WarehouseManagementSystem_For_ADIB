@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace WMS_FOR_ADIB.Models
 {
-    internal class PurchaseOrder
+    public class PurchaseOrder
     {
         [Key]
         public int POId { get; set; }
@@ -25,9 +25,15 @@ namespace WMS_FOR_ADIB.Models
         [ForeignKey("PRNumber")]
         public PurchaseRequisition? PurchaseRequisition { get; set; }
 
+        [DisplayName("Grand Total")]
+        public decimal GrandTotal => Items?.Sum(i => i.TotalPrice) ?? 0;
+
         [Required]
         [DisplayName("Supplier Name")]
         public string? SupplierName { get; set; }
+
+        [Required]
+        public int SupplierID { get; set; }
 
         [ForeignKey("SupplierID")]
         public Supplier? Supplier { get; set; }

@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace WMS_FOR_ADIB.Models
 {
-    internal class AssetReturn
+    public class AssetReturn
     {
         [Key]
         public int ReturnID { get; set; }
@@ -18,11 +18,7 @@ namespace WMS_FOR_ADIB.Models
         [DisplayName(" Branch Code")]
         public string?  BranchCode { get; set; }
 
-        [Required]
-        public int ItemID { get; set; }
-
-        [ForeignKey("ItemID")]
-        public Item? Item { get; set; }
+        public ICollection<Item>?Items { get; set; }
 
         [Required]
         [DisplayName("Return Date")]
