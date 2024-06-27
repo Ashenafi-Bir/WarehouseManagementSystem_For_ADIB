@@ -35,10 +35,10 @@ namespace WMS_FOR_ADIB.Models
         public decimal TotalPrice { get; private set; }
 
         [Required]
-        [DisplayName("Purchase Order Number")]
-        public string? PONumber { get; set; }
+        [DisplayName("Purchase Order ID")]
+        public int POId { get; set; }
 
-        [ForeignKey("PONumber")]
+        [ForeignKey("POId")]
         public PurchaseOrder? PurchaseOrder { get; set; }
 
         public ICollection<AssetRequistion>? AssetRequisitions { get; set; }

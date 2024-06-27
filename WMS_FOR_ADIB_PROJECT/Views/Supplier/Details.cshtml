@@ -1,0 +1,24 @@
+﻿@model WMS_FOR_ADIB.Models.Supplier
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-yellow bg-main py-2">Supplier Details</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <dl class="row">
+            <dt class="col-sm-4">Name</dt>
+            <dd class="col-sm-8">@Model.Name</dd>
+
+            <dt class="col-sm-4">Invoice Number</dt>
+            <dd class="col-sm-8">@Model.InvoiceNumber</dd>
+        </dl>
+        <div class="mb-3">
+            <a asp-controller="Supplier" asp-action="Edit" asp-route-id="@Model.SupplierID" class="btn your-class btn-primary">Edit</a>
+            <a asp-controller="Supplier" asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+﻿@model List<WMS_FOR_ADIB.Models.PurchaseOrder>
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-yellow bg-main py-2">Purchase Order List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-6">
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="PurchaseOrder" asp-action="Create" class="btn your-class bg-main btn-primary">
+                    <i class="bi bi-plus-circle"></i> Create New Purchase Order
+                </a>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>PO Number</th>
+                    <th>PR Number</th>
+                    <th>Supplier Name</th>
+                    <th>Date</th>
+                    <th>Grand Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var purchaseOrder in Model.OrderBy(po => po.POId))
+                {
+                    <tr>
+                        <td>@purchaseOrder.PONumber</td>
+                        <td>@purchaseOrder.PRNumber</td>
+                        <td>@purchaseOrder.SupplierName</td>
+                        <td>@purchaseOrder.Date.ToShortDateString()</td>
+                        <td>@purchaseOrder.GrandTotal.ToString("C")</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a asp-controller="PurchaseOrder" asp-action="Edit" asp-route-id="@purchaseOrder.POId" class="btn btn-sm btn-primary mx-1 text-light">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                <a asp-controller="PurchaseOrder" asp-action="Delete" asp-route-id="@purchaseOrder.POId" class="btn btn-sm btn-danger mx-1 text-light">
+                                    <i class="bi bi-trash-fill"></i> Delete
+                                </a>
+                                <a asp-controller="PurchaseOrder" asp-action="Details" asp-route-id="@purchaseOrder.POId" class="btn btn-sm btn-info mx-1 text-light">
+                                    <i class="bi bi-eye-fill"></i> Details
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -47,3 +47,23 @@ body {
 .title-padding {
     padding-right: 40px
 }
+.your-class {
+    /* Regular text color */
+    color: #d1ff12; /* Example color */
+    /* Transition for smooth hover effect */
+    transition: color 0.3s ease;
+}
+
+.your-class:hover {
+    /* Text color on hover */
+    color: black; /* Example hover color */
+}
+
+.btn-primary, .btn-danger, .btn-info {
+    opacity: 0.9;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.btn-primary:hover, .btn-danger:hover, .btn-info:hover {
+        opacity: 1;
+    }

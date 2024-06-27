@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WMS_FOR_ADIB.DataAccess.Repository.IRepository
+﻿namespace WMS_FOR_ADIB.DataAccess.Repository.IRepository
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         IItemRepository Item { get; }
+        ISupplierRepository Supplier { get; }
+        IPurchaseOrderRepository PurchaseOrder { get; }
+        IPurchaseRequisitionRepository PurchaseRequisition { get; }
+        IAssetDisposalRepository AssetDisposal { get; }
+        IAssetRequistionRepository AssetRequistion { get; }
+        IAssetReturnRepository AssetReturn { get; } 
+        IAssetTransferRepository AssetTransfer { get; }
         void Save();
     }
 }

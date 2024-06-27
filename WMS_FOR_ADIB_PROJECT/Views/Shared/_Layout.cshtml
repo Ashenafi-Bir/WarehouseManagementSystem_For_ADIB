@@ -6,11 +6,14 @@
     <title>@ViewData["Title"] - WMS_FOR_ADIB_PROJECT</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="~/WMS_FOR_ADIB_PROJECT.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-main border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-light bg-main border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <img src="~/images/logo.JPG" alt="Logo" class="logo"  asp-append-version="true">
                 <a class="navbar-brand text-bold title-padding" asp-area="" asp-controller="Home" asp-action="Index">WMS_ADIB</a>
@@ -21,18 +24,25 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-yellow text-bold" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-yellow text-bold" asp-area="" asp-controller="PurchaseRequisition" asp-action="Index">Purchase Requisition</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-yellow text-bold" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-yellow text-bold" asp-area="" asp-controller="PurchaseOrder" asp-action="Index">Purchase Order</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-yellow text-bold" asp-area="" asp-controller="Item" asp-action="Index">Item</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-yellow text-bold" asp-area="" asp-controller="Supplier" asp-action="Index">Supplier</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-
+     </header>
     <div class="container">
         <main role="main" class="pb-3">
+                <partial name="_Notification" />
             @RenderBody()
         </main>
     </div>

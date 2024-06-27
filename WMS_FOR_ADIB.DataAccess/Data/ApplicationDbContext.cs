@@ -1,21 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WMS_FOR_ADIB.Models;
-using WMS_FOR_ADIB.DataAccess;
-
-
 
 namespace WMS_FOR_ADIB.DataAccess.Data
 {
-    public class ApplicationDbContext:IdentityDbContext<IdentityUser>
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
 
@@ -25,14 +17,12 @@ namespace WMS_FOR_ADIB.DataAccess.Data
         public DbSet<AssetRequistion> AssetRequistions { get; set; }
         public DbSet<AssetTransfer> AssetTransfers { get; set; }
         public DbSet<Item> Items { get; set; }
-        public DbSet<PurchaseOrder> purchaseOrders { get; set; }
-        public DbSet<PurchaseRequisition> purchaseRequisitions { get; set; }
+        public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
+        public DbSet<PurchaseRequisition> PurchaseRequisitions { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
 
-    
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             base.OnModelCreating(modelBuilder);
 
             // Configuring relationships
@@ -49,7 +39,7 @@ namespace WMS_FOR_ADIB.DataAccess.Data
             modelBuilder.Entity<PurchaseOrder>()
                 .HasMany(po => po.Items)
                 .WithOne(i => i.PurchaseOrder)
-                .HasForeignKey(i => i.PONumber);
+                .HasForeignKey(i => i.POId);
 
             modelBuilder.Entity<Item>()
                 .HasMany(i => i.AssetTransfers)
@@ -66,7 +56,6 @@ namespace WMS_FOR_ADIB.DataAccess.Data
             modelBuilder.Entity<Item>()
                 .HasMany(i => i.AssetRequisitions)
                 .WithMany(ar => ar.Items);
-            SeedData.Initialize(this);
 
             modelBuilder.Entity<Item>()
                 .Property(i => i.TotalPrice)

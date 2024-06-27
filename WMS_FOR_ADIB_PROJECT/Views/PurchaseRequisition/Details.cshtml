@@ -1,0 +1,29 @@
+﻿@model WMS_FOR_ADIB.Models.PurchaseRequisition
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-yellow bg-main py-2">Purchase Requisition Details</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <dl class="row">
+            <dt class="col-sm-4">Requisition Number</dt>
+            <dd class="col-sm-8">@Model.PRNumber</dd>
+
+            <dt class="col-sm-4">Date</dt>
+            <dd class="col-sm-8">@Model.Date.ToShortDateString()</dd>
+
+            <dt class="col-sm-4">Requested By</dt>
+            <dd class="col-sm-8">@Model.RequestedBy</dd>
+
+            <dt class="col-sm-4">Authorized By</dt>
+            <dd class="col-sm-8">@Model.AuthorizedBy</dd>
+        </dl>
+        <div class="mb-3">
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>

@@ -19,9 +19,18 @@ namespace WMS_FOR_ADIB.DataAccess.Repository
 
 
 
-        public void Update(Item obj)
+        public void Update(Item item)
         {
-            _db.Items.Update(obj);
+            var objFromDb = _db.Items.FirstOrDefault(i => i.ItemID == item.ItemID);
+            if (objFromDb != null)
+            {
+                objFromDb.Description = item.Description;
+                objFromDb.Unit = item.Unit;
+                objFromDb.Quantity = item.Quantity;
+                objFromDb.UnitPrice = item.UnitPrice;
+                objFromDb.POId = item.POId;
+                // TotalPrice is computed and should not be manually updated.
+            }
         }
     }
    
