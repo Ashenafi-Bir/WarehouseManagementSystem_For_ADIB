@@ -15,7 +15,7 @@ namespace WMS_FOR_ADIB.DataAccess.Repository
         public IPurchaseRequisitionRepository PurchaseRequisition { get; private set; }
         public IAssetTransferRepository AssetTransfer { get; private set; }
         public IAssetDisposalRepository AssetDisposal { get; private set; }
-        public IAssetRequistionRepository AssetRequistion { get; private set; }
+        public IAssetRequisitionRepository AssetRequisition { get; private set; }
         public IAssetReturnRepository AssetReturn { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
@@ -28,7 +28,7 @@ namespace WMS_FOR_ADIB.DataAccess.Repository
             AssetTransfer = new AssetTransferRepository(_db);
             AssetDisposal = new AssetDisposalRepository(_db);
             AssetReturn = new AssetReturnRepository(_db);
-            AssetRequistion = new AssetRequistionRepository(_db);
+            AssetRequisition= new AssetRequistionRepository(_db);
             
         }
 

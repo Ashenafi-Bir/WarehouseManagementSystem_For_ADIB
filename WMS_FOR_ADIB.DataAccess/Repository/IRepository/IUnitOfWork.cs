@@ -7,9 +7,9 @@
         IPurchaseOrderRepository PurchaseOrder { get; }
         IPurchaseRequisitionRepository PurchaseRequisition { get; }
         IAssetDisposalRepository AssetDisposal { get; }
-        IAssetRequistionRepository AssetRequistion { get; }
         IAssetReturnRepository AssetReturn { get; } 
         IAssetTransferRepository AssetTransfer { get; }
+       IAssetRequisitionRepository AssetRequisition { get; }
         void Save();
     }
 }

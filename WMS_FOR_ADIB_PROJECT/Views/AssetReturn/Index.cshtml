@@ -1,0 +1,56 @@
+﻿@model List<WMS_FOR_ADIB.Models.AssetReturn>
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-yellow bg-main py-2">Asset Returns List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-6">
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="AssetReturn" asp-action="Create" class="btn your-class bg-main btn-primary">
+                    <i class="bi bi-plus-circle"></i> Create New Asset Return
+                </a>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Branch Code</th>
+                    <th>Return Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var assetReturn in Model.OrderBy(ar => ar.ReturnID))
+                {
+                    <tr>
+                        <td>@assetReturn.BranchCode</td>
+                        <td>@assetReturn.DateReturned.ToShortDateString()</td>
+                        <td>@assetReturn.Status</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a asp-controller="AssetReturn" asp-action="Edit" asp-route-id="@assetReturn.ReturnID" class="btn btn-sm btn-primary mx-1 text-light">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                <a asp-controller="AssetReturn" asp-action="Delete" asp-route-id="@assetReturn.ReturnID" class="btn btn-sm btn-danger mx-1 text-light">
+                                    <i class="bi bi-trash-fill"></i> Delete
+                                </a>
+                                <a asp-controller="AssetReturn" asp-action="Details" asp-route-id="@assetReturn.ReturnID" class="btn btn-sm btn-info mx-1 text-light">
+                                    <i class="bi bi-eye-fill"></i> Details
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

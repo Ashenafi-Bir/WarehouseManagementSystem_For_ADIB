@@ -7,7 +7,7 @@ using WMS_FOR_ADIB.Models;
 
 namespace WMS_FOR_ADIB.DataAccess.Repository.IRepository
 {
-    public interface IAssetRequistionRepository
+    public interface IAssetRequisitionRepository : IRepository<AssetRequistion>
     {
         void Update(AssetRequistion obj);
     }

@@ -7,7 +7,7 @@ using WMS_FOR_ADIB.Models;
 
 namespace WMS_FOR_ADIB.DataAccess.Repository.IRepository
 {
-    public interface IAssetTransferRepository
+    public interface IAssetTransferRepository:IRepository<AssetTransfer>
     {
         void Update(AssetTransfer obj);
     }

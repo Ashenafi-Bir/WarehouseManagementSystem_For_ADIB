@@ -7,7 +7,7 @@ using WMS_FOR_ADIB.Models;
 
 namespace WMS_FOR_ADIB.DataAccess.Repository.IRepository
 {
-    public interface IAssetReturnRepository
+    public interface IAssetReturnRepository: IRepository<AssetReturn>
     {
         void Update(AssetReturn obj);
     }

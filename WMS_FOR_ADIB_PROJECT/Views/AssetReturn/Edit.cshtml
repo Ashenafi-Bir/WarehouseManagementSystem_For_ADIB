@@ -1,0 +1,62 @@
+﻿@model WMS_FOR_ADIB.Models.AssetReturn
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Edit Asset Return</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post">
+            <input asp-for="ReturnID" hidden />
+            <div class="border p-3 mt-4">
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="BranchCode" class="form-control border-0 shadow" />
+                    <label asp-for="BranchCode" class="ms-2"></label>
+                    <span asp-validation-for="BranchCode" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="DateReturned" type="date" class="form-control border-0 shadow" />
+                    <label asp-for="DateReturned" class="ms-2"></label>
+                    <span asp-validation-for="DateReturned" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Status" class="form-control border-0 shadow" />
+                    <label asp-for="Status" class="ms-2"></label>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="ReturnedBY" class="form-control border-0 shadow" />
+                    <label asp-for="ReturnedBY" class="ms-2"></label>
+                    <span asp-validation-for="ReturnedBY" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="ApprovedBY" class="form-control border-0 shadow" />
+                    <label asp-for="ApprovedBY" class="ms-2"></label>
+                    <span asp-validation-for="ApprovedBY" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="ReceivedBy" class="form-control border-0 shadow" />
+                    <label asp-for="ReceivedBy" class="ms-2"></label>
+                    <span asp-validation-for="ReceivedBy" class="text-danger"></span>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn btn-primary your-class form-control">Update</button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="AssetReturn" asp-action="Index" class="btn btn-secondary  text-dark border form-control">
+                            Back to List
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

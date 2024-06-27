@@ -9,7 +9,7 @@ using WMS_FOR_ADIB.Models;
 
 namespace WMS_FOR_ADIB.DataAccess.Repository
 {
-    public class AssetRequistionRepository : Repository<AssetRequistion>, IAssetRequistionRepository
+    public class AssetRequistionRepository : Repository<AssetRequistion>, IAssetRequisitionRepository
     {
         private ApplicationDbContext _db;
 

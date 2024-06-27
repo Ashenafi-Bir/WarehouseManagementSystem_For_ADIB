@@ -2,7 +2,75 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    .bg-image {
+        background-image: url('/images/wh1.jpg'); 
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100vh; 
+        padding: 20px; 
+    }
+
+    .dashboard-box {
+        background-color: rgba(255, 255, 255, 0.1); /* Adjust alpha (fourth parameter) for transparency */
+        padding: 20px;
+        border-radius: 10px;
+        backdrop-filter: blur(10px); /* Optional: adds a blur effect to the background */
+    }
+</style>
+
+<div class="bg-image">
+    <div class="card shadow border-0 mt-4 dashboard-box">
+        <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="text-yellow bg-main py-2">Warehouse Management Dashboard</h2>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-4">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <a asp-controller="AssetDisposal" asp-action="Index" class="btn btn-block btn-primary">
+                        <i class="bi bi-trash"></i> Asset Disposals
+                    </a>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <a asp-controller="AssetReturn" asp-action="Index" class="btn btn-block btn-info">
+                        <i class="bi bi-arrow-return-left"></i> Asset Returns
+                    </a>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <a asp-controller="AssetTransfer" asp-action="Index" class="btn btn-block btn-warning">
+                        <i class="bi bi-arrow-right-circle"></i> Asset Transfers
+                    </a>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <a asp-controller="AssetRequisition" asp-action="Index" class="btn btn-block btn-success">
+                        <i class="bi bi-list-check"></i> Asset Requisitions
+                    </a>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <a asp-controller="PurchaseOrder" asp-action="Index" class="btn btn-block btn-secondary">
+                        <i class="bi bi-cart-plus"></i> Purchase Orders
+                    </a>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <a asp-controller="Supplier" asp-action="Index" class="btn btn-block btn-danger">
+                        <i class="bi bi-people"></i> Suppliers
+                    </a>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <a asp-controller="PurchaseRequisition" asp-action="Index" class="btn btn-block btn-info">
+                        <i class="bi bi-journal"></i> Purchase Requisitions
+                    </a>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <a asp-controller="Item" asp-action="Index" class="btn btn-block btn-primary">
+                        <i class="bi bi-box"></i> Items
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WMS_FOR_ADIB_PROJECT</title>
+    <title>@ViewData["Title"]-WMS_ADIB</title>
+    <link rel="icon" type="image/x-icon" href="~/logo.JPG">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -24,23 +25,15 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-yellow text-bold" asp-area="" asp-controller="PurchaseRequisition" asp-action="Index">Purchase Requisition</a>
+                            <a class="nav-link text-yellow text-bold" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-yellow text-bold" asp-area="" asp-controller="PurchaseOrder" asp-action="Index">Purchase Order</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-yellow text-bold" asp-area="" asp-controller="Item" asp-action="Index">Item</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-yellow text-bold" asp-area="" asp-controller="Supplier" asp-action="Index">Supplier</a>
-                        </li>
+                       
                     </ul>
                 </div>
             </div>
         </nav>
      </header>
-    <div class="container">
+    <div class="container ">
         <main role="main" class="pb-3">
                 <partial name="_Notification" />
             @RenderBody()

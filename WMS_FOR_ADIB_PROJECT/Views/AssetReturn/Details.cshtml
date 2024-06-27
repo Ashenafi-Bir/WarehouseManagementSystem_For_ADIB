@@ -1,0 +1,36 @@
+﻿@model WMS_FOR_ADIB.Models.AssetReturn
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-yellow bg-main py-2">Asset Return Details</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <dl class="row">
+            <dt class="col-sm-4">Branch Code</dt>
+            <dd class="col-sm-8">@Model.BranchCode</dd>
+
+            <dt class="col-sm-4">Return Date</dt>
+            <dd class="col-sm-8">@Model.DateReturned</dd>
+
+            <dt class="col-sm-4">Status</dt>
+            <dd class="col-sm-8">@Model.Status</dd>
+
+            <dt class="col-sm-4">Returned By</dt>
+            <dd class="col-sm-8">@Model.ReturnedBY</dd>
+
+            <dt class="col-sm-4">Approved By</dt>
+            <dd class="col-sm-8">@Model.ApprovedBY</dd>
+
+            <dt class="col-sm-4">Received By</dt>
+            <dd class="col-sm-8">@Model.ReceivedBy</dd>
+        </dl>
+        <div class="mb-3">
+            <a asp-controller="AssetReturn" asp-action="Edit" asp-route-id="@Model.ReturnID" class="btn your-class btn-primary">Edit</a>
+            <a asp-controller="AssetReturn" asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>

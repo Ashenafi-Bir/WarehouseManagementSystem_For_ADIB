@@ -1,0 +1,55 @@
+﻿@model WMS_FOR_ADIB.Models.AssetDisposal
+
+<form asp-action="Create" method="post" class="mt-4">
+    <div class="card shadow border-0">
+        <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="text-yellow bg-main py-2">Create Asset Disposal</h2>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-4">
+            <!-- Form fields -->
+            <div class="mb-3">
+                <label asp-for="Quantity" class="form-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DateDisposed" class="form-label"></label>
+                <input asp-for="DateDisposed" type="date" class="form-control" />
+                <span asp-validation-for="DateDisposed" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Reason" class="form-label"></label>
+                <textarea asp-for="Reason" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Reason" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DisposedBy" class="form-label"></label>
+                <input asp-for="DisposedBy" class="form-control" />
+                <span asp-validation-for="DisposedBy" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ApprovedBy" class="form-label"></label>
+                <input asp-for="ApprovedBy" class="form-control" />
+                <span asp-validation-for="ApprovedBy" class="text-danger"></span>
+            </div>
+            <div class="row pt-2">
+                <div class="col-6 col-md-3">
+                    <button type="submit" class="btn btn-primary form-control your-class">Create</button>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a asp-controller="AssetDisposal" asp-action="Index" class="btn btn-outline-primary text-dark border form-control">
+                        Back to List
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

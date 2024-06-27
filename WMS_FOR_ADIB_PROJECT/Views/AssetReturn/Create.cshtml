@@ -1,0 +1,60 @@
+﻿@model WMS_FOR_ADIB.Models.AssetReturn
+
+<form asp-action="Create" method="post" class="mt-4">
+    <div class="card shadow border-0">
+        <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="text-yellow bg-main py-2">Create Asset Return</h2>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-4">
+            <!-- Form fields -->
+            <div class="mb-3">
+                <label asp-for="BranchCode" class="form-label"></label>
+                <input asp-for="BranchCode" class="form-control" />
+                <span asp-validation-for="BranchCode" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DateReturned" class="form-label"></label>
+                <input asp-for="DateReturned" type="date" class="form-control" />
+                <span asp-validation-for="DateReturned" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Status" class="form-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ReturnedBY" class="form-label"></label>
+                <input asp-for="ReturnedBY" class="form-control" />
+                <span asp-validation-for="ReturnedBY" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ApprovedBY" class="form-label"></label>
+                <input asp-for="ApprovedBY" class="form-control" />
+                <span asp-validation-for="ApprovedBY" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ReceivedBy" class="form-label"></label>
+                <input asp-for="ReceivedBy" class="form-control" />
+                <span asp-validation-for="ReceivedBy" class="text-danger"></span>
+            </div>
+            <div class="row pt-2">
+                <div class="col-6 col-md-3">
+                    <button type="submit" class="btn btn-primary form-control your-class">Create</button>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a asp-controller="AssetReturn" asp-action="Index" class="btn btn-outline-primary text-dark border form-control">
+                        Back to List
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

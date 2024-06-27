@@ -23,7 +23,8 @@
             <dd class="col-sm-8">@Model.AuthorizedBy</dd>
         </dl>
         <div class="mb-3">
-            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            <a asp-controller="PurchaseRequisition" asp-action="Edit" asp-route-id="@Model.PRId" class="btn your-class btn-primary">Edit</a>
+            <a asp-controller="PurchaseRequisition" asp-action="Index" class="btn btn-secondary">Back to List</a>
         </div>
     </div>
 </div>
