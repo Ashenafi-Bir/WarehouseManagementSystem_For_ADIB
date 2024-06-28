@@ -59,6 +59,22 @@ body {
     color: black; /* Example hover color */
 }
 
+.login {
+    color: #d1ff12;
+    transition: color 0.3s ease;
+    border: 2px solid black;
+    background-color: #259ee5;
+    padding: 10px 30px; /* 10px padding top and bottom, 20px padding left and right */
+    border-radius: 10px;
+    margin-right: 20px;
+}
+    .login:hover {
+        padding: 10px 30px;
+        background-color: #259ee5; /* 10px padding top and bottom, 20px padding left and right */
+     }
+.login.login-text {
+        padding: 10px 10px; /* Padding around the text inside the button */
+    }
 .btn-primary, .btn-danger, .btn-info {
     opacity: 0.9;
     transition: opacity 0.2s ease-in-out;
