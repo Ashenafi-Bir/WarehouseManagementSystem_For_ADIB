@@ -3,21 +3,22 @@ using WMS_FOR_ADIB.DataAccess.Repository.IRepository;
 using WMS_FOR_ADIB.Models;
 using System.Linq;
 
-namespace WMS_FOR_ADIB.Controllers
+namespace WMS_FOR_ADIB_PROJECT.Areas.AssetReturn.Controllers
 {
-    public class AssetRequisitionController : Controller
+    [Area("AssetReturn")]
+    public class AssetReturnController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public AssetRequisitionController(IUnitOfWork unitOfWork)
+        public AssetReturnController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            var assetRequisitions = _unitOfWork.AssetRequisition.GetAll().ToList();
-            return View(assetRequisitions);
+            var assetReturns = _unitOfWork.AssetReturn.GetAll().ToList();
+            return View(assetReturns);
         }
 
         public IActionResult Create()
@@ -27,16 +28,16 @@ namespace WMS_FOR_ADIB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(AssetRequistion assetRequisition)
+        public IActionResult Create(WMS_FOR_ADIB.Models.AssetReturn assetReturn)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.AssetRequisition.Add(assetRequisition);
+                _unitOfWork.AssetReturn.Add(assetReturn);
                 _unitOfWork.Save();
-                TempData["success"] = "Asset Requisition created successfully";
+                TempData["success"] = "Asset Return created successfully";
                 return RedirectToAction(nameof(Index));
             }
-            return View(assetRequisition);
+            return View(assetReturn);
         }
 
         public IActionResult Edit(int? id)
@@ -46,27 +47,27 @@ namespace WMS_FOR_ADIB.Controllers
                 return NotFound();
             }
 
-            var assetRequisition = _unitOfWork.AssetRequisition.Get(a => a.RequisitionID == id);
-            if (assetRequisition == null)
+            var assetReturn = _unitOfWork.AssetReturn.Get(a => a.ReturnID == id);
+            if (assetReturn == null)
             {
                 return NotFound();
             }
 
-            return View(assetRequisition);
+            return View(assetReturn);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(AssetRequistion assetRequisition)
+        public IActionResult Edit(WMS_FOR_ADIB.Models.AssetReturn assetReturn)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.AssetRequisition.Update(assetRequisition);
+                _unitOfWork.AssetReturn.Update(assetReturn);
                 _unitOfWork.Save();
-                TempData["success"] = "Asset Requisition updated successfully";
+                TempData["success"] = "Asset Return updated successfully";
                 return RedirectToAction(nameof(Index));
             }
-            return View(assetRequisition);
+            return View(assetReturn);
         }
 
         public IActionResult Delete(int? id)
@@ -76,28 +77,28 @@ namespace WMS_FOR_ADIB.Controllers
                 return NotFound();
             }
 
-            var assetRequisition = _unitOfWork.AssetRequisition.Get(a => a.RequisitionID == id);
-            if (assetRequisition == null)
+            var assetReturn = _unitOfWork.AssetReturn.Get(a => a.ReturnID == id);
+            if (assetReturn == null)
             {
                 return NotFound();
             }
 
-            return View(assetRequisition);
+            return View(assetReturn);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int? id)
         {
-            var assetRequisition = _unitOfWork.AssetRequisition.Get(a => a.RequisitionID == id);
-            if (assetRequisition == null)
+            var assetReturn = _unitOfWork.AssetReturn.Get(a => a.ReturnID == id);
+            if (assetReturn == null)
             {
                 return NotFound();
             }
 
-            _unitOfWork.AssetRequisition.Remove(assetRequisition);
+            _unitOfWork.AssetReturn.Remove(assetReturn);
             _unitOfWork.Save();
-            TempData["success"] = "Asset Requisition deleted successfully";
+            TempData["success"] = "Asset Return deleted successfully";
             return RedirectToAction(nameof(Index));
         }
 
@@ -108,13 +109,13 @@ namespace WMS_FOR_ADIB.Controllers
                 return NotFound();
             }
 
-            var assetRequisitionFromDb = _unitOfWork.AssetRequisition.Get(a => a.RequisitionID == id);
+            var assetReturnFromDb = _unitOfWork.AssetReturn.Get(a => a.ReturnID == id);
 
-            if (assetRequisitionFromDb == null)
+            if (assetReturnFromDb == null)
             {
                 return NotFound();
             }
-            return View(assetRequisitionFromDb);
+            return View(assetReturnFromDb);
         }
     }
 }

@@ -3,21 +3,22 @@ using WMS_FOR_ADIB.DataAccess.Repository.IRepository;
 using WMS_FOR_ADIB.Models;
 using System.Linq;
 
-namespace WMS_FOR_ADIB.Controllers
+namespace WMS_FOR_ADIB_PROJECT.Areas.AssetTransfer.Controllers
 {
-    public class AssetDisposalController : Controller
+    [Area("AssetTransfer")]
+    public class AssetTransferController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public AssetDisposalController(IUnitOfWork unitOfWork)
+        public AssetTransferController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            var assetDisposals = _unitOfWork.AssetDisposal.GetAll().ToList();
-            return View(assetDisposals);
+            var assetTransfers = _unitOfWork.AssetTransfer.GetAll().ToList();
+            return View(assetTransfers);
         }
 
         public IActionResult Create()
@@ -27,16 +28,16 @@ namespace WMS_FOR_ADIB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(AssetDisposal assetDisposal)
+        public IActionResult Create(WMS_FOR_ADIB.Models.AssetTransfer assetTransfer)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.AssetDisposal.Add(assetDisposal);
+                _unitOfWork.AssetTransfer.Add(assetTransfer);
                 _unitOfWork.Save();
-                TempData["success"] = "Asset Disposal created successfully";
+                TempData["success"] = "Asset Transfer created successfully";
                 return RedirectToAction(nameof(Index));
             }
-            return View(assetDisposal);
+            return View(assetTransfer);
         }
 
         public IActionResult Edit(int? id)
@@ -46,27 +47,27 @@ namespace WMS_FOR_ADIB.Controllers
                 return NotFound();
             }
 
-            var assetDisposal = _unitOfWork.AssetDisposal.Get(a => a.DisposalID == id);
-            if (assetDisposal == null)
+            var assetTransfer = _unitOfWork.AssetTransfer.Get(a => a.TransferID == id);
+            if (assetTransfer == null)
             {
                 return NotFound();
             }
 
-            return View(assetDisposal);
+            return View(assetTransfer);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(AssetDisposal assetDisposal)
+        public IActionResult Edit(WMS_FOR_ADIB.Models.AssetTransfer assetTransfer)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.AssetDisposal.Update(assetDisposal);
+                _unitOfWork.AssetTransfer.Update(assetTransfer);
                 _unitOfWork.Save();
-                TempData["success"] = "Asset Disposal updated successfully";
+                TempData["success"] = "Asset Transfer updated successfully";
                 return RedirectToAction(nameof(Index));
             }
-            return View(assetDisposal);
+            return View(assetTransfer);
         }
 
         public IActionResult Delete(int? id)
@@ -76,28 +77,28 @@ namespace WMS_FOR_ADIB.Controllers
                 return NotFound();
             }
 
-            var assetDisposal = _unitOfWork.AssetDisposal.Get(a => a.DisposalID == id);
-            if (assetDisposal == null)
+            var assetTransfer = _unitOfWork.AssetTransfer.Get(a => a.TransferID == id);
+            if (assetTransfer == null)
             {
                 return NotFound();
             }
 
-            return View(assetDisposal);
+            return View(assetTransfer);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int? id)
         {
-            var assetDisposal = _unitOfWork.AssetDisposal.Get(a => a.DisposalID == id);
-            if (assetDisposal == null)
+            var assetTransfer = _unitOfWork.AssetTransfer.Get(a => a.TransferID == id);
+            if (assetTransfer == null)
             {
                 return NotFound();
             }
 
-            _unitOfWork.AssetDisposal.Remove(assetDisposal);
+            _unitOfWork.AssetTransfer.Remove(assetTransfer);
             _unitOfWork.Save();
-            TempData["success"] = "Asset Disposal deleted successfully";
+            TempData["success"] = "Asset Transfer deleted successfully";
             return RedirectToAction(nameof(Index));
         }
 
@@ -108,13 +109,13 @@ namespace WMS_FOR_ADIB.Controllers
                 return NotFound();
             }
 
-            var assetDisposalFromDb = _unitOfWork.AssetDisposal.Get(a => a.DisposalID == id);
+            var assetTransferFromDb = _unitOfWork.AssetTransfer.Get(a => a.TransferID == id);
 
-            if (assetDisposalFromDb == null)
+            if (assetTransferFromDb == null)
             {
                 return NotFound();
             }
-            return View(assetDisposalFromDb);
+            return View(assetTransferFromDb);
         }
     }
 }

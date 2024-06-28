@@ -3,21 +3,22 @@ using WMS_FOR_ADIB.DataAccess.Repository.IRepository;
 using WMS_FOR_ADIB.Models;
 using System.Linq;
 
-namespace WMS_FOR_ADIB.Controllers
+namespace WMS_FOR_ADIB_PROJECT.Areas.AssetDisposal.Controllers
 {
-    public class PurchaseRequisitionController : Controller
+    [Area("AssetDisposal")]
+    public class AssetDisposalController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public PurchaseRequisitionController(IUnitOfWork unitOfWork)
+        public AssetDisposalController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            var requisitions = _unitOfWork.PurchaseRequisition.GetAll().ToList();
-            return View(requisitions);
+            var assetDisposals = _unitOfWork.AssetDisposal.GetAll().ToList();
+            return View(assetDisposals);
         }
 
         public IActionResult Create()
@@ -27,16 +28,16 @@ namespace WMS_FOR_ADIB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(PurchaseRequisition requisition)
+        public IActionResult Create(WMS_FOR_ADIB.Models.AssetDisposal assetDisposal)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.PurchaseRequisition.Add(requisition);
+                _unitOfWork.AssetDisposal.Add(assetDisposal);
                 _unitOfWork.Save();
-                TempData["success"] = "Purchase Requisition created successfully";
+                TempData["success"] = "Asset Disposal created successfully";
                 return RedirectToAction(nameof(Index));
             }
-            return View(requisition);
+            return View(assetDisposal);
         }
 
         public IActionResult Edit(int? id)
@@ -46,28 +47,27 @@ namespace WMS_FOR_ADIB.Controllers
                 return NotFound();
             }
 
-            var requisition = _unitOfWork.PurchaseRequisition.Get(r => r.PRId == id);
-
-            if (requisition == null)
+            var assetDisposal = _unitOfWork.AssetDisposal.Get(a => a.DisposalID == id);
+            if (assetDisposal == null)
             {
                 return NotFound();
             }
 
-            return View(requisition);
+            return View(assetDisposal);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(PurchaseRequisition requisition)
+        public IActionResult Edit(WMS_FOR_ADIB.Models.AssetDisposal assetDisposal)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.PurchaseRequisition.Update(requisition);
+                _unitOfWork.AssetDisposal.Update(assetDisposal);
                 _unitOfWork.Save();
-                TempData["success"] = "Purchase Requisition updated successfully";
+                TempData["success"] = "Asset Disposal updated successfully";
                 return RedirectToAction(nameof(Index));
             }
-            return View(requisition);
+            return View(assetDisposal);
         }
 
         public IActionResult Delete(int? id)
@@ -77,34 +77,31 @@ namespace WMS_FOR_ADIB.Controllers
                 return NotFound();
             }
 
-            var requisition = _unitOfWork.PurchaseRequisition.Get(r => r.PRId == id);
-
-            if (requisition == null)
+            var assetDisposal = _unitOfWork.AssetDisposal.Get(a => a.DisposalID == id);
+            if (assetDisposal == null)
             {
                 return NotFound();
             }
 
-            return View(requisition);
+            return View(assetDisposal);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int? id)
         {
-            var requisition = _unitOfWork.PurchaseRequisition.Get(p => p.PRId == id!.Value);
-            if (requisition == null)
+            var assetDisposal = _unitOfWork.AssetDisposal.Get(a => a.DisposalID == id);
+            if (assetDisposal == null)
             {
-               
                 return NotFound();
             }
 
-            _unitOfWork.PurchaseRequisition.Remove(requisition);
+            _unitOfWork.AssetDisposal.Remove(assetDisposal);
             _unitOfWork.Save();
-            TempData["success"] = "Purchase Requisition deleted successfully";
+            TempData["success"] = "Asset Disposal deleted successfully";
             return RedirectToAction(nameof(Index));
         }
 
-        // Add the Details action method here
         public IActionResult Details(int? id)
         {
             if (id == null || id == 0)
@@ -112,14 +109,13 @@ namespace WMS_FOR_ADIB.Controllers
                 return NotFound();
             }
 
-            var requisition = _unitOfWork.PurchaseRequisition.Get(r => r.PRId == id);
+            var assetDisposalFromDb = _unitOfWork.AssetDisposal.Get(a => a.DisposalID == id);
 
-            if (requisition == null)
+            if (assetDisposalFromDb == null)
             {
                 return NotFound();
             }
-
-            return View(requisition);
+            return View(assetDisposalFromDb);
         }
     }
 }

@@ -4,11 +4,11 @@
 
 <style>
     .bg-image {
-        background-image: url('/images/wh1.jpg'); 
+        background-image: url('/images/wh1.jpg');
         background-size: cover;
         background-repeat: no-repeat;
-        height: 100vh; 
-        padding: 20px; 
+        height: 100vh;
+        padding: 20px;
     }
 
     .dashboard-box {
@@ -31,37 +31,37 @@
         <div class="card-body p-4">
             <div class="row">
                 <div class="col-md-3 mb-3">
-                    <a asp-controller="AssetDisposal" asp-action="Index" class="btn btn-block btn-primary">
+                    <a asp-area="AssetDisposal" asp-controller="AssetDisposal" asp-action="Index" class="btn btn-block btn-primary">
                         <i class="bi bi-trash"></i> Asset Disposals
                     </a>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <a asp-controller="AssetReturn" asp-action="Index" class="btn btn-block btn-info">
+                    <a asp-area="AssetReturn" asp-controller="AssetReturn" asp-action="Index" class="btn btn-block btn-info">
                         <i class="bi bi-arrow-return-left"></i> Asset Returns
                     </a>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <a asp-controller="AssetTransfer" asp-action="Index" class="btn btn-block btn-warning">
+                    <a asp-area="AssetTransfer" asp-controller="AssetTransfer" asp-action="Index" class="btn btn-block btn-warning">
                         <i class="bi bi-arrow-right-circle"></i> Asset Transfers
                     </a>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <a asp-controller="AssetRequisition" asp-action="Index" class="btn btn-block btn-success">
+                    <a asp-area="AssetRequistion" asp-controller="AssetRequisition" asp-action="Index" class="btn btn-block btn-success">
                         <i class="bi bi-list-check"></i> Asset Requisitions
                     </a>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <a asp-controller="PurchaseOrder" asp-action="Index" class="btn btn-block btn-secondary">
+                    <a asp-area="PurchaseOrder" asp-controller="PurchaseOrder" asp-action="Index" class="btn btn-block btn-secondary">
                         <i class="bi bi-cart-plus"></i> Purchase Orders
                     </a>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <a asp-controller="Supplier" asp-action="Index" class="btn btn-block btn-danger">
+                    <a  asp-controller="Supplier" asp-action="Index" class="btn btn-block btn-danger">
                         <i class="bi bi-people"></i> Suppliers
                     </a>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <a asp-controller="PurchaseRequisition" asp-action="Index" class="btn btn-block btn-info">
+                    <a asp-area="PurchaseRequistion" asp-controller="PurchaseRequisition" asp-action="Index" class="btn btn-block btn-info">
                         <i class="bi bi-journal"></i> Purchase Requisitions
                     </a>
                 </div>

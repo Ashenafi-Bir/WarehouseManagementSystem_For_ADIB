@@ -3,21 +3,22 @@ using WMS_FOR_ADIB.DataAccess.Repository.IRepository;
 using WMS_FOR_ADIB.Models;
 using System.Linq;
 
-namespace WMS_FOR_ADIB.Controllers
+namespace WMS_FOR_ADIB_PROJECT.Areas.AssetRequistion.Controllers
 {
-    public class AssetTransferController : Controller
+    [Area("AssetRequistion")]
+    public class AssetRequisitionController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public AssetTransferController(IUnitOfWork unitOfWork)
+        public AssetRequisitionController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            var assetTransfers = _unitOfWork.AssetTransfer.GetAll().ToList();
-            return View(assetTransfers);
+            var assetRequisitions = _unitOfWork.AssetRequisition.GetAll().ToList();
+            return View(assetRequisitions);
         }
 
         public IActionResult Create()
@@ -27,16 +28,16 @@ namespace WMS_FOR_ADIB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(AssetTransfer assetTransfer)
+        public IActionResult Create(WMS_FOR_ADIB.Models.AssetRequistion assetRequisition)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.AssetTransfer.Add(assetTransfer);
+                _unitOfWork.AssetRequisition.Add(assetRequisition);
                 _unitOfWork.Save();
-                TempData["success"] = "Asset Transfer created successfully";
+                TempData["success"] = "Asset Requisition created successfully";
                 return RedirectToAction(nameof(Index));
             }
-            return View(assetTransfer);
+            return View(assetRequisition);
         }
 
         public IActionResult Edit(int? id)
@@ -46,27 +47,27 @@ namespace WMS_FOR_ADIB.Controllers
                 return NotFound();
             }
 
-            var assetTransfer = _unitOfWork.AssetTransfer.Get(a => a.TransferID == id);
-            if (assetTransfer == null)
+            var assetRequisition = _unitOfWork.AssetRequisition.Get(a => a.RequisitionID == id);
+            if (assetRequisition == null)
             {
                 return NotFound();
             }
 
-            return View(assetTransfer);
+            return View(assetRequisition);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(AssetTransfer assetTransfer)
+        public IActionResult Edit(WMS_FOR_ADIB.Models.AssetRequistion assetRequisition)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.AssetTransfer.Update(assetTransfer);
+                _unitOfWork.AssetRequisition.Update(assetRequisition);
                 _unitOfWork.Save();
-                TempData["success"] = "Asset Transfer updated successfully";
+                TempData["success"] = "Asset Requisition updated successfully";
                 return RedirectToAction(nameof(Index));
             }
-            return View(assetTransfer);
+            return View(assetRequisition);
         }
 
         public IActionResult Delete(int? id)
@@ -76,28 +77,28 @@ namespace WMS_FOR_ADIB.Controllers
                 return NotFound();
             }
 
-            var assetTransfer = _unitOfWork.AssetTransfer.Get(a => a.TransferID == id);
-            if (assetTransfer == null)
+            var assetRequisition = _unitOfWork.AssetRequisition.Get(a => a.RequisitionID == id);
+            if (assetRequisition == null)
             {
                 return NotFound();
             }
 
-            return View(assetTransfer);
+            return View(assetRequisition);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int? id)
         {
-            var assetTransfer = _unitOfWork.AssetTransfer.Get(a => a.TransferID == id);
-            if (assetTransfer == null)
+            var assetRequisition = _unitOfWork.AssetRequisition.Get(a => a.RequisitionID == id);
+            if (assetRequisition == null)
             {
                 return NotFound();
             }
 
-            _unitOfWork.AssetTransfer.Remove(assetTransfer);
+            _unitOfWork.AssetRequisition.Remove(assetRequisition);
             _unitOfWork.Save();
-            TempData["success"] = "Asset Transfer deleted successfully";
+            TempData["success"] = "Asset Requisition deleted successfully";
             return RedirectToAction(nameof(Index));
         }
 
@@ -108,13 +109,13 @@ namespace WMS_FOR_ADIB.Controllers
                 return NotFound();
             }
 
-            var assetTransferFromDb = _unitOfWork.AssetTransfer.Get(a => a.TransferID == id);
+            var assetRequisitionFromDb = _unitOfWork.AssetRequisition.Get(a => a.RequisitionID == id);
 
-            if (assetTransferFromDb == null)
+            if (assetRequisitionFromDb == null)
             {
                 return NotFound();
             }
-            return View(assetTransferFromDb);
+            return View(assetRequisitionFromDb);
         }
     }
 }

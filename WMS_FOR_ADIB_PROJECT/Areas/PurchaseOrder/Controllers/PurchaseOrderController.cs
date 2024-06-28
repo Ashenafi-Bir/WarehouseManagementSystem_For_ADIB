@@ -3,8 +3,9 @@ using WMS_FOR_ADIB.DataAccess.Repository.IRepository;
 using WMS_FOR_ADIB.Models;
 using System.Linq;
 
-namespace WMS_FOR_ADIB.Controllers
+namespace WMS_FOR_ADIB_PROJECT.Areas.PurchaseOrder.Controllers
 {
+    [Area("PurchaseOrder")]
     public class PurchaseOrderController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -27,7 +28,7 @@ namespace WMS_FOR_ADIB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(PurchaseOrder purchaseOrder)
+        public IActionResult Create(WMS_FOR_ADIB.Models.PurchaseOrder purchaseOrder)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +59,7 @@ namespace WMS_FOR_ADIB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(PurchaseOrder purchaseOrder)
+        public IActionResult Edit(WMS_FOR_ADIB.Models.PurchaseOrder purchaseOrder)
         {
             if (ModelState.IsValid)
             {
