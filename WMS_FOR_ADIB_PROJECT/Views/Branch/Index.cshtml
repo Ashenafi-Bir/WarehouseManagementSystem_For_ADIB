@@ -1,0 +1,54 @@
+﻿@model List<WMS_FOR_ADIB.Models.Branch>
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-yellow bg-main py-2">Branch List</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-6">
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="Branch" asp-action="Create" class="btn your-class bg-main btn-primary">
+                    <i class="bi bi-plus-circle"></i> Create New Branch
+                </a>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Branch Name</th>
+                    <th>Branch Code</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var branch in Model.OrderBy(b => b.BranchID))
+                {
+                    <tr>
+                        <td>@branch.BranchName</td>
+                        <td>@branch.BranchCode</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a asp-controller="Branch" asp-action="Edit" asp-route-id="@branch.BranchID" class="btn btn-sm btn-primary mx-1 text-light">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                <a asp-controller="Branch" asp-action="Delete" asp-route-id="@branch.BranchID" class="btn btn-sm btn-danger mx-1 text-light">
+                                    <i class="bi bi-trash-fill"></i> Delete
+                                </a>
+                                <a asp-controller="Branch" asp-action="Details" asp-route-id="@branch.BranchID" class="btn btn-sm btn-info mx-1 text-light">
+                                    <i class="bi bi-eye-fill"></i> Details
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

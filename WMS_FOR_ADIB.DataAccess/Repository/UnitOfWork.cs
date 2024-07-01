@@ -17,6 +17,7 @@ namespace WMS_FOR_ADIB.DataAccess.Repository
         public IAssetDisposalRepository AssetDisposal { get; private set; }
         public IAssetRequisitionRepository AssetRequisition { get; private set; }
         public IAssetReturnRepository AssetReturn { get; private set; }
+        public IBranchRepository Branch { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
@@ -29,6 +30,7 @@ namespace WMS_FOR_ADIB.DataAccess.Repository
             AssetDisposal = new AssetDisposalRepository(_db);
             AssetReturn = new AssetReturnRepository(_db);
             AssetRequisition= new AssetRequistionRepository(_db);
+            Branch= new BranchRepository(_db);
             
         }
 

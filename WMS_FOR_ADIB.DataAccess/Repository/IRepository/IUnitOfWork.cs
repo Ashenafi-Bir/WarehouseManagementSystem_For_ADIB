@@ -10,6 +10,7 @@
         IAssetReturnRepository AssetReturn { get; } 
         IAssetTransferRepository AssetTransfer { get; }
        IAssetRequisitionRepository AssetRequisition { get; }
+        IBranchRepository Branch { get; }
         void Save();
     }
 }
