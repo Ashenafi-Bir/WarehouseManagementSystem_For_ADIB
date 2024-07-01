@@ -20,6 +20,7 @@ namespace WMS_FOR_ADIB.DataAccess.Data
         public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
         public DbSet<PurchaseRequisition> PurchaseRequisitions { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Branch> Branches { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
