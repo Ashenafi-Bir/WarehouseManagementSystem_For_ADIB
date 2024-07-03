@@ -1,31 +1,27 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿﻿@using Microsoft.AspNetCore.Identity
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
             <a id="manage" class="nav-link login border-0" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><span class="login-text">Hello @UserManager.GetUserName(User)!</span></a>
-    </li>
-    <li class="nav-item">
-        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button id="logout" type="submit" class="nav-link btn btn-link login "><span class="login-text">Logout</span></button>
-        </form>
         </li>
-        @if (User.IsInRole(SD.Role_IT))
-        {
-            <li class="nav-item">
-                <a class="nav-link login " id="register" asp-area="Identity" asp-page="/Account/Register"><span class="login-text">Register</span></a>
-            </li>
-        }
+        <li class="nav-item">
+            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button id="logout" type="submit" class="nav-link btn btn-link login "><span class="login-text">Logout</span></button>
+            </form>
+        </li>
     }
     else
     {
-      
-    <li class="nav-item">
+        <li class="nav-item">
+            <a class="nav-link login " id="register" asp-area="Identity" asp-page="/Account/Register"><span class="login-text">Register</span></a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link login " id="login" asp-area="Identity" asp-page="/Account/Login"><span class="login-text">Login</span></a>
-    </li>
-}
+        </li>
+    }
 </ul>

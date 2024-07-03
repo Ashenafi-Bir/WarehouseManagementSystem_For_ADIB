@@ -14,6 +14,7 @@ namespace WMS_FOR_ADIB.Utility
         public const string Role_Store ="store";
         public const string Role_Employee = "Employee";
         public const string Role_Inspector = "Inspector";
+        public const string Role_Checker = "Checker";
 
     }
 }

@@ -12,8 +12,8 @@ using WMS_FOR_ADIB.DataAccess.Data;
 namespace WMS_FOR_ADIB.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240629071441_addBranchTable")]
-    partial class addBranchTable
+    [Migration("20240703071944_intialSetup")]
+    partial class intialSetup
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -615,10 +615,6 @@ namespace WMS_FOR_ADIB.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

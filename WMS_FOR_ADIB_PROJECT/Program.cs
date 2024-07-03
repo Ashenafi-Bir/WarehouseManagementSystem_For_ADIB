@@ -9,6 +9,7 @@ using WMS_FOR_ADIB.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
 using WMS_FOR_ADIB.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using WMS_FOR_ADIB.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +19,9 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddDefaultTokenProviders();  
+    .AddDefaultTokenProviders();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();

@@ -24,5 +24,6 @@ namespace WMS_FOR_ADIB.Models
 
         // Navigation property
         public ICollection<ApplicationUser>? ApplicationUsers { get; set; }
+        
     }
 }

@@ -12,8 +12,8 @@ using WMS_FOR_ADIB.DataAccess.Data;
 namespace WMS_FOR_ADIB.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240626073510_InitialSetup1")]
-    partial class InitialSetup1
+    [Migration("20240703120537_updateBranch")]
+    partial class updateBranch
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -450,6 +450,27 @@ namespace WMS_FOR_ADIB.DataAccess.Migrations
                     b.ToTable("AssetTransfers");
                 });
 
+            modelBuilder.Entity("WMS_FOR_ADIB.Models.Branch", b =>
+                {
+                    b.Property<int>("BranchID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BranchID"));
+
+                    b.Property<string>("BranchCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BranchName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("BranchID");
+
+                    b.ToTable("Branches");
+                });
+
             modelBuilder.Entity("WMS_FOR_ADIB.Models.Item", b =>
                 {
                     b.Property<int>("ItemID")
@@ -582,9 +603,8 @@ namespace WMS_FOR_ADIB.DataAccess.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("BranchCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("BranchId")
+                        .HasColumnType("int");
 
                     b.Property<string>("EmployeeId")
                         .IsRequired()
@@ -594,9 +614,7 @@ namespace WMS_FOR_ADIB.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasIndex("BranchId");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
@@ -740,6 +758,22 @@ namespace WMS_FOR_ADIB.DataAccess.Migrations
                     b.Navigation("PurchaseRequisition");
 
                     b.Navigation("Supplier");
+                });
+
+            modelBuilder.Entity("WMS_FOR_ADIB.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("WMS_FOR_ADIB.Models.Branch", "Branch")
+                        .WithMany("ApplicationUsers")
+                        .HasForeignKey("BranchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Branch");
+                });
+
+            modelBuilder.Entity("WMS_FOR_ADIB.Models.Branch", b =>
+                {
+                    b.Navigation("ApplicationUsers");
                 });
 
             modelBuilder.Entity("WMS_FOR_ADIB.Models.PurchaseOrder", b =>
