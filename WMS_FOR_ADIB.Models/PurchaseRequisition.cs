@@ -28,6 +28,8 @@ namespace WMS_FOR_ADIB.Models
         [DisplayName("Authorized BY")]
         public string? AuthorizedBy { get; set; }
 
+        public string? Status {  get; set; }
+
     
         //navigation
         public ICollection<PurchaseOrder>? PurchaseOrders { get; set; }

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace WMS_FOR_ADIB_PROJECT.Areas.PurchaseRequisition.Controllers
 {
-    [Area("PurchaseRequistion")]
+    [Area("PurchaseRequisition")]
     public class PurchaseRequisitionController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -37,6 +37,7 @@ namespace WMS_FOR_ADIB_PROJECT.Areas.PurchaseRequisition.Controllers
             {
                 var currentUser = _userManager.GetUserName(User);
                 requisition.RequestedBy = currentUser;
+                requisition.Status = "Pending";
                 _unitOfWork.PurchaseRequisition.Add(requisition);
                 _unitOfWork.Save();
                 TempData["success"] = "Purchase Requisition created successfully";
@@ -95,9 +96,9 @@ namespace WMS_FOR_ADIB_PROJECT.Areas.PurchaseRequisition.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int? id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var requisition = _unitOfWork.PurchaseRequisition.Get(p => p.PRId == id!.Value);
+            var requisition = _unitOfWork.PurchaseRequisition.Get(p => p.PRId == id);
             if (requisition == null)
             {
                 return NotFound();
@@ -123,8 +124,9 @@ namespace WMS_FOR_ADIB_PROJECT.Areas.PurchaseRequisition.Controllers
                 return NotFound();
             }
 
-            return PartialView("_AuthorizePartialView", requisition);
+            return View(requisition); // Assuming you have a Details.cshtml view for PurchaseRequisition
         }
+
 
         [HttpPost]
         public IActionResult Authorize(int id, string authorizedBy)
@@ -135,7 +137,10 @@ namespace WMS_FOR_ADIB_PROJECT.Areas.PurchaseRequisition.Controllers
                 return NotFound();
             }
 
-            requisition.AuthorizedBy = authorizedBy;
+            var currentUser = _userManager.GetUserName(User);
+            requisition.AuthorizedBy = currentUser;
+            requisition.Status = "authorized"; // Assuming there is a Status field
+
             _unitOfWork.PurchaseRequisition.Update(requisition);
             _unitOfWork.Save();
 

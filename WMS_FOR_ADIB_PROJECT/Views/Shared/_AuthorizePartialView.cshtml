@@ -1,5 +1,37 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model WMS_FOR_ADIB.Models.PurchaseRequisition
+
+<form id="authorizeForm-@Model.PRId" asp-action="Authorize" method="post" data-requisition-id="@Model.PRId">
+    <p>Are you sure you want to authorize this requisition?</p>
+    <div class="mb-3">
+        <label for="authorizedBy-@Model.PRId" class="form-label">Type 'authorize' to confirm:</label>
+        <input type="text" id="authorizedBy-@Model.PRId" name="authorizedBy" class="form-control" required />
+    </div>
+    <div id="authorizationMessage-@Model.PRId" class="text-danger"></div>
+    <button type="submit" class="btn btn-primary">Authorize</button>
+</form>
+
+<script>
+    $('#authorizeForm-@Model.PRId').submit(function (event) {
+        event.preventDefault();
+        var formData = $(this).serialize();
+        var requisitionId = $(this).data('requisition-id');
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("Authorize", "PurchaseRequisition", new { area = "PurchaseRequisition", id = Model.PRId })',
+            data: formData,
+            success: function (response) {
+                if (response.success) {
+                    $('#authorizationMessage-' + requisitionId).text(response.message).removeClass('text-danger').addClass('text-success');
+                    $('#authorizeModal-' + requisitionId).modal('hide');
+                    location.reload();
+                } else {
+                    $('#authorizationMessage-' + requisitionId).text('Authorization failed').addClass('text-danger');
+                }
+            },
+            error: function () {
+                $('#authorizationMessage-' + requisitionId).text('An error occurred while authorizing').addClass('text-danger');
+            }
+        });
+    });
+</script>

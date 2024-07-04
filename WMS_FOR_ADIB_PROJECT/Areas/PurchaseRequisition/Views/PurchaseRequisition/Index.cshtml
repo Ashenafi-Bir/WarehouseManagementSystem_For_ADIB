@@ -45,10 +45,13 @@
                                 <a asp-controller="PurchaseRequisition" asp-action="Delete" asp-route-id="@requisition.PRId" class="btn btn-sm btn-danger mx-1 text-light">
                                     <i class="bi bi-trash-fill"></i> Delete
                                 </a>
+
                                 <a asp-controller="PurchaseRequisition" asp-action="Details" asp-route-id="@requisition.PRId" class="btn btn-sm btn-info mx-1 text-light">
                                     <i class="bi bi-eye-fill"></i> Details
                                 </a>
-                                <button type="button" class="btn btn-sm btn-success mx-1 text-light" data-toggle="modal" data-target="#authorizeModal-@requisition.PRId">
+
+                                <button type="button" class="btn btn-sm @(requisition.Status == "pending" ? "btn-warning text-dark" : "btn-success") mx-1 text-light"
+                                        data-bs-toggle="modal" data-bs-target="#authorizeModal-@requisition.PRId">
                                     <i class="bi bi-check-circle"></i> Authorize
                                 </button>
                             </div>
@@ -74,25 +77,6 @@
     </div>
 </div>
 
-
-    <script>
-        function authorizeRequisition(id) {
-            var authorizedBy = document.getElementById('authorizedBy').value;
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("Authorize", "PurchaseRequisition", new { area = "PurchaseRequisition" })',
-                data: { id: id, authorizedBy: authorizedBy },
-                success: function (response) {
-                    if (response.success) {
-                        document.getElementById('authorizationMessage').innerText = response.message;
-                    } else {
-                        document.getElementById('authorizationMessage').innerText = 'Authorization failed';
-                    }
-                },
-                error: function () {
-                    document.getElementById('authorizationMessage').innerText = 'An error occurred while authorizing';
-                }
-            });
-        }
-    </script>
-
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

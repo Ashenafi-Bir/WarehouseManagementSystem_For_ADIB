@@ -1,0 +1,57 @@
+﻿@model WMS_FOR_ADIB.Models.PurchaseRequisition
+
+<form asp-action="Edit" method="post" class="mt-4">
+    <input type="hidden" asp-for="PRId" />
+
+    <div class="card shadow border-0">
+        <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="text-yellow bg-main py-2">Edit Purchase Requisition</h2>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-4">
+            <!-- Form fields -->
+            <div class="border p-3 mt-4">
+                <div class="mb-3">
+                    <label asp-for="PRNumber" class="form-label"></label>
+                    <input asp-for="PRNumber" class="form-control" />
+                    <span asp-validation-for="PRNumber" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Date" class="form-label"></label>
+                    <input asp-for="Date" type="date" class="form-control" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="RequestedBy" class="form-label"></label>
+                    <input asp-for="RequestedBy" class="form-control" disabled />
+                    <!-- Add hidden input to retain value on post -->
+                    <input asp-for="RequestedBy" type="hidden" />
+                    <span asp-validation-for="RequestedBy" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="AuthorizedBy" class="form-label"></label>
+                    <input asp-for="AuthorizedBy" class="form-control" disabled />
+                    <!-- Add hidden input to retain value on post -->
+                    <input asp-for="AuthorizedBy" type="hidden" />
+                    <span asp-validation-for="AuthorizedBy" class="text-danger"></span>
+                </div>
+            </div>
+            <!-- Submit button -->
+            <div class="row mt-4">
+                <div class="col-6 col-md-3">
+                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a asp-controller="PurchaseRequisition" asp-action="Index" class="btn btn-outline-primary form-control mt-3">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
