@@ -20,23 +20,23 @@ namespace WMS_FOR_ADIB.Models
 
         public ICollection<Item>?Items { get; set; }
 
-        [Required]
+        
         [DisplayName("Return Date")]
         public DateTime DateReturned { get; set; }
 
-        [Required]
+        
         [StringLength(50)]
         public string? Status { get; set; }
 
-        [Required]
+        
         [DisplayName("Returned by")]
         public string? ReturnedBY { get; set; }
 
-        [Required]
+        
         [DisplayName("Approved by")]
         public string? ApprovedBY { get; set; }
 
-        [Required]
+        
         [DisplayName("Received By")]
         public string? ReceivedBy { get; set; }
 

@@ -19,7 +19,7 @@ namespace WMS_FOR_ADIB.Models
         [Required]
         public int Quantity { get; set; }
 
-        [Required]
+       
         [DisplayName("Disposed Date")]
         public DateTime DateDisposed { get; set; }
 
@@ -27,11 +27,11 @@ namespace WMS_FOR_ADIB.Models
         [StringLength(500)]
         public string? Reason { get; set; }
 
-        [Required]
+        
         [DisplayName(" Disposed BY")]
         public string? DisposedBy { get; set; }
 
-        [Required]
+        
         [DisplayName("Approved By")]
         public string? ApprovedBy { get; set; }
 

@@ -14,11 +14,11 @@ namespace WMS_FOR_ADIB.Models
         [Key]
         public int TransferID { get; set; }
 
-        [Required]
+        
         [DisplayName("From Brranch Code")]
         public string?  FromBranchCode { get; set; }
 
-        [Required]
+        
         [DisplayName("To Branch Code")]
         public string? ToBranchCode { get; set; }
 
@@ -31,19 +31,19 @@ namespace WMS_FOR_ADIB.Models
         [DisplayName("Transfer Date")]
         public DateTime DateTransferred { get; set; }
 
-        [Required]
+        
         [StringLength(50)]
         public string? Status { get; set; }
 
-        [Required]
+        
         [DisplayName("Requested By")]
         public string ? RequestedBy { get; set; }
 
-        [Required]
+        
         [DisplayName("Approved By")]
         public string? ApprovedBy { get; set; }
 
-        [Required]
+        
         [DisplayName("Received By")]
         public string? ReceivedBy { get; set; }
 

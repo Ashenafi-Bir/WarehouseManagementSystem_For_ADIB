@@ -21,16 +21,8 @@
                 <input asp-for="Date" type="date" class="form-control" />
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
-            <div class="mb-3">
-                <label asp-for="RequestedBy" class="form-label"></label>
-                <input asp-for="RequestedBy" class="form-control" />
-                <span asp-validation-for="RequestedBy" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="AuthorizedBy" class="form-label"></label>
-                <input asp-for="AuthorizedBy" class="form-control" />
-                <span asp-validation-for="AuthorizedBy" class="text-danger"></span>
-            </div>
+            <!-- Remove the RequestedBy and AuthorizedBy fields from the form -->
+            <!-- These fields will be automatically set in the controller -->
             <div class="row pt-2">
                 <div class="col-6 col-md-3">
                     <button type="submit" class="btn btn-primary form-control your-class">Create</button>
@@ -43,7 +35,6 @@
             </div>
         </div>
     </div>
-  
 </form>
 
 @section Scripts {

@@ -20,11 +20,11 @@ namespace WMS_FOR_ADIB.Models
         [Required]
         public DateTime Date { get; set; }
 
-        [Required]
+       
         [DisplayName("Requested By")]
         public string? RequestedBy{ get; set; }
 
-        [Required]
+        
         [DisplayName("Authorized BY")]
         public string? AuthorizedBy { get; set; }
 

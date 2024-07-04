@@ -1,18 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WMS_FOR_ADIB.DataAccess.Repository.IRepository;
 using WMS_FOR_ADIB.Models;
+using Microsoft.AspNetCore.Identity;
 using System.Linq;
 
-namespace WMS_FOR_ADIB_PROJECT.Areas.PurchaseRequistion.Controllers
+namespace WMS_FOR_ADIB_PROJECT.Areas.PurchaseRequisition.Controllers
 {
     [Area("PurchaseRequistion")]
     public class PurchaseRequisitionController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public PurchaseRequisitionController(IUnitOfWork unitOfWork)
+        public PurchaseRequisitionController(IUnitOfWork unitOfWork, UserManager<IdentityUser> userManager)
         {
             _unitOfWork = unitOfWork;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -28,10 +31,12 @@ namespace WMS_FOR_ADIB_PROJECT.Areas.PurchaseRequistion.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(PurchaseRequisition requisition)
+        public IActionResult Create(WMS_FOR_ADIB.Models.PurchaseRequisition requisition)
         {
             if (ModelState.IsValid)
             {
+                var currentUser = _userManager.GetUserName(User);
+                requisition.RequestedBy = currentUser;
                 _unitOfWork.PurchaseRequisition.Add(requisition);
                 _unitOfWork.Save();
                 TempData["success"] = "Purchase Requisition created successfully";
@@ -59,7 +64,7 @@ namespace WMS_FOR_ADIB_PROJECT.Areas.PurchaseRequistion.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(PurchaseRequisition requisition)
+        public IActionResult Edit(WMS_FOR_ADIB.Models.PurchaseRequisition requisition)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +100,6 @@ namespace WMS_FOR_ADIB_PROJECT.Areas.PurchaseRequistion.Controllers
             var requisition = _unitOfWork.PurchaseRequisition.Get(p => p.PRId == id!.Value);
             if (requisition == null)
             {
-
                 return NotFound();
             }
 
@@ -105,7 +109,6 @@ namespace WMS_FOR_ADIB_PROJECT.Areas.PurchaseRequistion.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // Add the Details action method here
         public IActionResult Details(int? id)
         {
             if (id == null || id == 0)
@@ -120,7 +123,23 @@ namespace WMS_FOR_ADIB_PROJECT.Areas.PurchaseRequistion.Controllers
                 return NotFound();
             }
 
-            return View(requisition);
+            return PartialView("_AuthorizePartialView", requisition);
+        }
+
+        [HttpPost]
+        public IActionResult Authorize(int id, string authorizedBy)
+        {
+            var requisition = _unitOfWork.PurchaseRequisition.Get(r => r.PRId == id);
+            if (requisition == null)
+            {
+                return NotFound();
+            }
+
+            requisition.AuthorizedBy = authorizedBy;
+            _unitOfWork.PurchaseRequisition.Update(requisition);
+            _unitOfWork.Save();
+
+            return Json(new { success = true, message = "Requisition authorized successfully" });
         }
     }
 }
