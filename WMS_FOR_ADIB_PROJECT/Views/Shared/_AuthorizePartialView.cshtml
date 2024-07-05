@@ -3,8 +3,9 @@
 <form id="authorizeForm-@Model.PRId" asp-action="Authorize" method="post" data-requisition-id="@Model.PRId">
     <p>Are you sure you want to authorize this requisition?</p>
     <div class="mb-3">
-        <label for="authorizedBy-@Model.PRId" class="form-label">Type 'authorize' to confirm:</label>
-        <input type="text" id="authorizedBy-@Model.PRId" name="authorizedBy" class="form-control" required />
+        <label for="authorizationConfirm-@Model.PRId" class="form-label">Type 'authorize' to confirm:</label>
+        <input type="text" id="authorizationConfirm-@Model.PRId" name="authorizationConfirm" class="form-control" required />
+        <input type="hidden" id="id-@Model.PRId" name="id" value="@Model.PRId" />
     </div>
     <div id="authorizationMessage-@Model.PRId" class="text-danger"></div>
     <button type="submit" class="btn btn-primary">Authorize</button>
@@ -18,15 +19,15 @@
 
         $.ajax({
             type: 'POST',
-            url: '@Url.Action("Authorize", "PurchaseRequisition", new { area = "PurchaseRequisition", id = Model.PRId })',
+            url: '@Url.Action("Authorize", "PurchaseRequisition", new { area = "PurchaseRequisition" })',
             data: formData,
             success: function (response) {
                 if (response.success) {
                     $('#authorizationMessage-' + requisitionId).text(response.message).removeClass('text-danger').addClass('text-success');
                     $('#authorizeModal-' + requisitionId).modal('hide');
-                    location.reload();
+                    window.location.href = '@Url.Action("Index", "PurchaseRequisition", new { area = "PurchaseRequisition" })';
                 } else {
-                    $('#authorizationMessage-' + requisitionId).text('Authorization failed').addClass('text-danger');
+                    $('#authorizationMessage-' + requisitionId).text(response.message).addClass('text-danger');
                 }
             },
             error: function () {
@@ -35,3 +36,4 @@
         });
     });
 </script>
+

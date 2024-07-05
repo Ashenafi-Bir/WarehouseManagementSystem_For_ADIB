@@ -129,22 +129,41 @@ namespace WMS_FOR_ADIB_PROJECT.Areas.PurchaseRequisition.Controllers
 
 
         [HttpPost]
-        public IActionResult Authorize(int id, string authorizedBy)
+        public IActionResult Authorize(int id, string authorizationConfirm)
         {
+            if (authorizationConfirm.ToLower() != "authorize")
+            {
+                TempData["error"] = "Invalid authorization confirmation.";
+                return RedirectToAction("Index");
+            }
+
             var requisition = _unitOfWork.PurchaseRequisition.Get(r => r.PRId == id);
             if (requisition == null)
             {
-                return NotFound();
+                TempData["error"] = "Requisition not found.";
+                return RedirectToAction("Index");
             }
 
             var currentUser = _userManager.GetUserName(User);
+
+            // Check if the current user is the same as the one who created the requisition
+            if (requisition.RequestedBy == currentUser)
+            {
+                TempData["error"] = "You cannot authorize your own requisition.";
+                return RedirectToAction("Index");
+            }
+
             requisition.AuthorizedBy = currentUser;
-            requisition.Status = "authorized"; // Assuming there is a Status field
+            requisition.Status = "Authorized"; // Assuming there is a Status field
 
             _unitOfWork.PurchaseRequisition.Update(requisition);
             _unitOfWork.Save();
 
-            return Json(new { success = true, message = "Requisition authorized successfully" });
+            TempData["success"] = "Requisition authorized successfully.";
+            return RedirectToAction("Index");
         }
+
+
+
     }
 }

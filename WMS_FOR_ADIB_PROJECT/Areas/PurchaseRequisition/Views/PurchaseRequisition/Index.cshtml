@@ -26,7 +26,9 @@
                     <th>Date</th>
                     <th>Requested By</th>
                     <th>Authorized By</th>
+                    <th>Status</th>
                     <th>Actions</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -37,6 +39,9 @@
                         <td>@requisition.Date.ToShortDateString()</td>
                         <td>@requisition.RequestedBy</td>
                         <td>@requisition.AuthorizedBy</td>
+                        <td class="@(requisition.Status == "Authorized" ? "text-success" : requisition.Status == "Pending" ? "text-warning" : "")">
+                            @requisition.Status
+                        </td>
                         <td>
                             <div class="btn-group" role="group">
                                 <a asp-controller="PurchaseRequisition" asp-action="Edit" asp-route-id="@requisition.PRId" class="btn btn-sm btn-primary mx-1 text-light">
