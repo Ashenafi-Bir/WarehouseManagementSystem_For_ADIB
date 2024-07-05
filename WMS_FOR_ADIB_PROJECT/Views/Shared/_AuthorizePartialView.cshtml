@@ -23,17 +23,17 @@
             data: formData,
             success: function (response) {
                 if (response.success) {
-                    $('#authorizationMessage-' + requisitionId).text(response.message).removeClass('text-danger').addClass('text-success');
-                    $('#authorizeModal-' + requisitionId).modal('hide');
+                    // Redirect to index page on success
                     window.location.href = '@Url.Action("Index", "PurchaseRequisition", new { area = "PurchaseRequisition" })';
                 } else {
-                    $('#authorizationMessage-' + requisitionId).text(response.message).addClass('text-danger');
+                    // Display error message in the authorizationMessage div
+                    $('#authorizationMessage-' + requisitionId).html('<span class="text-danger">' + response.message + '</span>');
                 }
             },
             error: function () {
-                $('#authorizationMessage-' + requisitionId).text('An error occurred while authorizing').addClass('text-danger');
+                // Display generic error message
+                $('#authorizationMessage-' + requisitionId).html('<span class="text-danger">An error occurred while authorizing.</span>');
             }
         });
     });
 </script>
-

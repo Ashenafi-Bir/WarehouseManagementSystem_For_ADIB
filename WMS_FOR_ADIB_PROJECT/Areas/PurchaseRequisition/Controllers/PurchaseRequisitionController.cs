@@ -149,8 +149,7 @@ namespace WMS_FOR_ADIB_PROJECT.Areas.PurchaseRequisition.Controllers
             // Check if the current user is the same as the one who created the requisition
             if (requisition.RequestedBy == currentUser)
             {
-                TempData["error"] = "You cannot authorize your own requisition.";
-                return RedirectToAction("Index");
+                return Json(new { success = false, message = "You cannot authorize your own requisition." });
             }
 
             requisition.AuthorizedBy = currentUser;

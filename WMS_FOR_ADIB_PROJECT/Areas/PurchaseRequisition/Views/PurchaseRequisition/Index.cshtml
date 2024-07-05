@@ -61,6 +61,7 @@
                                 </button>
                             </div>
                             <!-- Modal -->
+                            <!-- Modal -->
                             <div class="modal fade" id="authorizeModal-@requisition.PRId" tabindex="-1" aria-labelledby="authorizeModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -69,6 +70,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
+                                            <div id="authorizationMessage-@requisition.PRId" class="text-danger"></div>
                                             <partial name="_AuthorizePartialView" model="requisition" />
                                         </div>
                                     </div>
